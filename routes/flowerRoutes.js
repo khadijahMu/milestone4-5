@@ -4,7 +4,7 @@ const { addFlower, getAllFlowers, deleteFlower } = require("../controllers/flowe
 const router = express.Router();
 //Route to get all flowers
 router.get("/", getAllFlowers);
-//Route to add a new flower (POST /flowers)
+//Route to add a new flower
 router.post("/", upload.single("image"), addFlower);
 //Route to delete a flower by ID
 router.delete("/:id", deleteFlower);
