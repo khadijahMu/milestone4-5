@@ -23,6 +23,9 @@ app.use("/uploads", express.static("uploads"));
 app.get("/", (req, res) => {
   res.send("Welcome to the Flower API!");
 });
+app.get("/", (req, res) => {
+  res.json({ message: "Server is running!" });
+});
 // the Flower Routes 
 app.use("/flowers", flowerRoutes); 
 // Error Handling
