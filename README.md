@@ -1,7 +1,7 @@
 🛠 Technologies Used
 Node.js
 Express.js
-MongoDB / PostgreSQL
+MongoDB
 Render (for deployment)
 Postman (for API testing)
 
