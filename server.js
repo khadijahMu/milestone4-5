@@ -23,7 +23,7 @@ app.use("/uploads", express.static("uploads"));
 app.get("/", (req, res) => {
   res.send("Welcome to the Flower API!");
 });
-//  Flower Routes 
+// the Flower Routes 
 app.use("/flowers", flowerRoutes); 
 // Error Handling
 app.use((req, res) => {
