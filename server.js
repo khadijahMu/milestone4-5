@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 //  Flower Routes 
 app.use("/flowers", flowerRoutes); 
-// 404 Error Handling
+// Error Handling
 app.use((req, res) => {
   console.log(`404 - Route not found: ${req.method} ${req.url}`);
   res.status(404).json({ message: "Route not found" });
