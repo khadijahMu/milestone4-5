@@ -30,5 +30,5 @@ app.use((req, res) => {
   console.log(`404 - Route not found: ${req.method} ${req.url}`);
   res.status(404).json({ message: "Route not found" });
 });
-//  Start the Server
+//  Starts the Server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
