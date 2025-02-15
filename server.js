@@ -20,9 +20,8 @@ mongoose.connect(process.env.MONGO_URI, {
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((err) => {
     console.error("❌ MongoDB Connection Error:", err);
-    process.exit(1); // Exit process if connection fails
+    process.exit(1); // Stop server if connection fails
   });
-
 // Middleware
 app.use(cors());
 app.use(express.json());
