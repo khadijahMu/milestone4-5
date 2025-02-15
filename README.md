@@ -12,7 +12,7 @@ Postman (for API testing)
 loom video link:
 
 👨‍💻 API Endpoints
-Render link:https://flower-delivery-at3n.onrender.com
+Render link:**https://flower-del.onrender.com**
 Method	Endpoint	Description
 GET	/http://localhost:5000/flowers	Fetch example data
 POST	http://localhost:5000/flowers	Create new example
