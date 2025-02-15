@@ -7,7 +7,7 @@ const flowerRoutes = require("./routes/flowerRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Log all incoming requests
+// Log all incoming requests on
 app.use((req, res, next) => {
   console.log(`Incoming Request: ${req.method} ${req.url}`);
   next();
