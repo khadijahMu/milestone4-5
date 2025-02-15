@@ -6,6 +6,11 @@ const flowerRoutes = require("./routes/flowerRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+// ✅ Check if MONGO_URI is loaded
+if (!process.env.MONGO_URI) {
+  console.error("❌ MONGO_URI is undefined! Make sure it's set in your .env file and Render.");
+  process.exit(1); // Stop server if no MongoDB URI
+}
 
 // Log all incoming requests on
 app.use((req, res, next) => {
