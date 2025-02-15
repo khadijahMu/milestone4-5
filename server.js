@@ -15,11 +15,11 @@ app.use((req, res, next) => {
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
-  serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+  serverSelectionTimeoutMS: 5000, 
 })
-  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .then(() => console.log(" Connected to MongoDB Atlas"))
   .catch((err) => {
-    console.error("❌ MongoDB Connection Error:", err);
+    console.error("MongoDB Connection Error:", err);
     process.exit(1); // Stop server if connection fails
   });
 // Middleware
