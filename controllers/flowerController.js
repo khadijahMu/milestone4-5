@@ -32,7 +32,6 @@ const getAllFlowers = async (req, res) => {
     res.status(500).json({ message: "Error retrieving flowers", error: error.message });
   }
 };
-
 // Function to delete a flower
 const deleteFlower = async (req, res) => {
   try {

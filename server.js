@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 //  Check if MONGO_URI is loaded correctly
 if (!process.env.MONGO_URI) {
-  console.error("❌ ERROR: MONGO_URI is undefined! Check your .env file and Render environment variables.");
+  console.error(" ERROR: MONGO_URI is undefined! Check your .env file and Render environment variables.");
   process.exit(1); 
 }
 // MongoDB Connection with proper error handling
@@ -34,8 +34,8 @@ app.get("/", (req, res) => {
 app.use("/api/flowers", flowerRoutes);
 //  Handle 404 Errors
 app.use((req, res) => {
-  console.error(`❌ ERROR: 404 - Route not found: ${req.method} ${req.url}`);
+  console.error(` ERROR: 404 - Route not found: ${req.method} ${req.url}`);
   res.status(404).json({ message: "Route not found" });
 });
 // Start the Server
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
