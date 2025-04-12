@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Delivery App - Admin Panel</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="admin-nav">
+        <div class="nav-title">Admin Panel</div>
+        <div class="nav-buttons">
+            <a href="flowers.html" class="nav-button active">Flowers</a>
+            <a href="AddFlowers.html" class="nav-button">Add Flower</a>
+        </div>
+    </nav>
+    <div class="admin-panel">
+        <div class="flower-grid">
+            <!-- Flower 1 -->
+            <div class="flower-card">
+                <div class="flower-image"></div>
+                <div class="flower-details">
+                    <p><strong>Name:</strong> Name #1</p>
+                    <p><strong>Category:</strong> Category #1</p>
+                    <p><strong>Price:</strong> $100</p>
+                    <p><strong>Description:</strong> A beautiful red rose.</p>
+                    <button class="delete-btn" onclick="deleteFlower(this)">X</button>
+                </div>
+            </div>
+            <!-- Flower 2 -->
+            <div class="flower-card">
+                <div class="flower-image"></div>
+                <div class="flower-details">
+                    <p><strong>Name:</strong> Name #2</p>
+                    <p><strong>Category:</strong> Category #1</p>
+                    <p><strong>Price:</strong> $150</p>
+                    <p><strong>Description:</strong> A bright daffodil</p>
+                    <button class="delete-btn" onclick="deleteFlower(this)">X</button>
+                </div>
+            </div>
+        </div>   
+        <script>
+        function deleteFlower(button) {
+            const card = button.closest('.flower-card');
+            card.remove();
+        }
+        </script> 
+        <style>
+        .delete-btn {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        </style>  
+        <div class="footer">
+            <p>Flower Delivery App</p>
+            <p>Created for ElevateHER Innovation Space Ltd</p>
+            <p>By</p> 
+            <p> Khadijah Mu'azu Mustapha</p>
+            </div>
+    </div>
+</body>
+</html>
