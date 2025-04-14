@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadArea.innerHTML = `<span>${fileName}</span>`;
         }
     });   
-    // Form submission
+    // Form submission handler
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         alert('Flower added successfully!');
