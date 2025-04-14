@@ -10,16 +10,16 @@
     <nav class="admin-nav">
         <div class="nav-title">Admin Panel</div>
         <div class="nav-buttons">
-            <a href="flowers.html" class="nav-button active">Flowers</a>
-            <a href="AddFlowers.html" class="nav-button">Add Flower</a>
+            <a href="index.html" class="nav-button">Flowers</a>
+            <a href="AddFlowers.html" class="nav-button active">Add Flower</a>
         </div>
     </nav>
-    </header>
-    <form class="flower-form" enctype="multipart/form-data" action="/admin/add-flower" method="POST">
+    <form id="flowerForm" class="flower-form" enctype="multipart/form-data">
       <label for="image">Image</label>
       <div class="upload-box">
-        <input type="file" name="image" id="image" accept="image/*" />
+        <input type="file" name="image" id="image" accept="image/*" required />
         <div class="upload-placeholder">Upload</div>
+        <img id="imagePreview" src="#" alt="Preview" style="display:none; max-width:200px; margin-top:10px;">
       </div>
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" required />
@@ -30,7 +30,7 @@
         </div>
         <div>
           <label for="price">Price:</label>
-          <input type="number" name="price" id="price" required />
+          <input type="number" name="price" id="price" required step="0.01" min="0" />
         </div>
       </div>
       <label for="description">Description:</label>
@@ -42,6 +42,53 @@
       <p>Created for ElevateHER Innovation Space Ltd</p>
       <p>By <strong>Khadijah Mu'azu Mustapha</strong></p>
     </footer>
-  </div>
+    <script>
+      // Image functions
+      document.getElementById('image').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const preview = document.getElementById('imagePreview');
+            preview.src = event.target.result;
+            preview.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      // Form submission
+      document.getElementById('flowerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        try {
+          const response = await fetch('/admin/add-flower', {
+            method: 'POST',
+            body: formData
+          });
+          if (response.ok) {
+            const result = await response.json();
+            alert('Flower added successfully!');
+            // Store the new flower in localStorage temporarily
+            const newFlower = {
+              id: Date.now().toString(),
+              name: document.getElementById('name').value,
+              category: document.getElementById('category').value,
+              price: parseFloat(document.getElementById('price').value),
+              description: document.getElementById('description').value,
+              image: document.getElementById('imagePreview').src
+            };
+            // Store in localStorage
+            localStorage.setItem('newFlower', JSON.stringify(newFlower));
+            // Redirect to landing page
+            window.location.href = 'index.html';
+          } else {
+            throw new Error('Failed to add flower');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error adding flower. Please try again.');
+        }
+      });
+    </script>
 </body>
 </html>
