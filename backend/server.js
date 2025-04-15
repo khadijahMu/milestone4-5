@@ -55,7 +55,6 @@ app.post('/admin/add-flower', upload.single('image'), (req, res) => {
   });
   // Saves newFlower to database 
   console.log("Flower received:", newFlower);
-
   res.redirect('/admin');
 });
 app.get("/admin/add-flower", (req, res) => {
