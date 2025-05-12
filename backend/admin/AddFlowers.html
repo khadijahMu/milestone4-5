@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Flower - Admin Panel</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <nav class="admin-nav">
@@ -14,28 +14,27 @@
       <a href="AddFlowers.html" class="nav-button active">Add Flower</a>
     </div>
   </nav>
-  <!-- Form -->
-  <form id="flowerForm" class="flower-form" enctype="multipart/form-data" method="POST" action="/admin/add-flower">
+  <form id="flowerForm" class="flower-form" enctype="multipart/form-data">
     <label for="image">Image</label>
     <div class="upload-box">
-      <input type="file" name="image" id="image" accept="image/*" required />
-      <div class="upload-placeholder">Upload</div>
+      <input type="file" name="image" id="image" accept="image/*" required>
+      <div class="upload-placeholder">Click to upload</div>
       <img id="imagePreview" src="#" alt="Preview" style="display:none; max-width:200px; margin-top:10px;">
     </div>
     <label for="name">Name:</label>
-    <input type="text" name="name" id="name" required />
+    <input type="text" name="name" id="name" required>
     <div class="input-row">
       <div>
         <label for="category">Category:</label>
-        <input type="text" name="category" id="category" required />
+        <input type="text" name="category" id="category" required>
       </div>
       <div>
         <label for="price">Price:</label>
-        <input type="number" name="price" id="price" required step="0.01" min="0" />
+        <input type="number" name="price" id="price" required step="0.01" min="0">
       </div>
     </div>
     <label for="description">Description:</label>
-    <textarea name="description" id="description" rows="5"></textarea>
+    <textarea name="description" id="description" rows="5" required></textarea>
     <button type="submit" class="btn-submit">SUBMIT</button>
   </form>
   <footer class="admin-footer">
@@ -44,6 +43,7 @@
     <p>By <strong>Khadijah Mu'azu Mustapha</strong></p>
   </footer>
   <script>
+    // Image Preview
     document.getElementById('image').addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (file) {
@@ -56,7 +56,7 @@
         reader.readAsDataURL(file);
       }
     });
-    // Submit 
+    // Form Submission
     document.getElementById('flowerForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const formData = new FormData(this);
@@ -65,15 +65,17 @@
           method: 'POST',
           body: formData
         });
+        const result = await response.json();
+        
         if (response.ok) {
           alert('Flower added successfully!');
           window.location.href = 'index.html';
         } else {
-          throw new Error('Failed to add flower');
+          throw new Error(result.error || 'Failed to add flower');
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Error adding flower. Please try again.');
+        alert(error.message);
       }
     });
   </script>

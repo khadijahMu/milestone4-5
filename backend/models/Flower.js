@@ -1,12 +1,25 @@
 const mongoose = require('mongoose');
-
 const flowerSchema = new mongoose.Schema({
-  name: String,
-  category: String,
-  price: Number,
-  description: String,
-  imagePath: String
+  name: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  image: {
+    type: String,
+    required: true
+  }
 });
-
-// Prevent model overwrite error in development (e.g., when using nodemon)
-module.exports = mongoose.models.Flower || mongoose.model('Flower', flowerSchema);
+module.exports = mongoose.model('Flower', flowerSchema);
