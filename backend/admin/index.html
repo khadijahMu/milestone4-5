@@ -31,15 +31,12 @@
       try {
         const response = await fetch('/api/flowers');
         const flowers = await response.json();
-        
         const flowerGrid = document.getElementById('flowerGrid');
         flowerGrid.innerHTML = '';
-        
         flowers.forEach(flower => {
           const flowerCard = document.createElement('div');
           flowerCard.className = 'flower-card';
           flowerCard.dataset.id = flower._id;
-          
           flowerCard.innerHTML = `
             <div class="flower-image">
               <img src="${flower.image}" alt="${flower.name}">
