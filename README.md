@@ -1,5 +1,4 @@
 # Flower Admin Dashboard
-
 A full-stack application for managing flower inventory, built with:
 - **Backend**: Node.js, Express, MongoDB
 - **Frontend**: HTML, CSS, JavaScript, React (JSX)
@@ -23,4 +22,4 @@ Key features of this README:
 2. Provides both full-stack and static-only deployment options
 3. Includes specific troubleshooting for your 404 issues
 4. Documents all API endpoints
-5. Gives React-specific instructions for the JSX component
+5. Gives React-specific instructions for the JSX component.
