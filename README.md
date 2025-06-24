@@ -21,5 +21,5 @@ Key features of this README:
 1. Clearly shows the admin folder structure
 2. Provides both full-stack and static-only deployment options
 3. Includes specific troubleshooting for your 404 issues
-4. Documents all API endpoints
+4. Documents all the API endpoints
 5. Gives React-specific instructions for the JSX component.
