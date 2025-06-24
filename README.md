@@ -14,8 +14,7 @@ render:https://milestone3-a8fj.onrender.com
 # Install dependencies
 npm install express mongoose cors dotenv
 
-# Start development server
-node backend/server.js
+
 
 
 Key features of this README:
