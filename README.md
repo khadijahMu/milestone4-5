@@ -1,6 +1,6 @@
 # Flower Admin Dashboard
 A full-stack application for managing flower inventory, built with:
-- **Backend**: Node.js, Express, MongoDB
+- **Backend**: Node.js, Express, MongoDB.
 - **Frontend**: HTML, CSS, JavaScript, React (JSX)
 - **Admin Panel**: Static files served from `/admin` folder
 loom link:https://www.loom.com/share/bc5e6f65498b4ddb87808d5c065fe237?sid=5343aff2-bf0a-4f4c-b6c7-56b5a8678de8
