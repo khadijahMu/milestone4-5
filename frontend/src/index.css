@@ -86,7 +86,7 @@ img, svg, video, iframe {
   width: 100%;
   height: 100%;
 }
-/* Icon Wrapper Base */
+/* Icon Wrapper */
 .icon-wrapper {
   display: flex;
   align-items: center;
