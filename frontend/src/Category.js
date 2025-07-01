@@ -33,7 +33,7 @@ function CategoryPage() {
               src={menuIcon} 
               alt="Menu" 
               className="icon" 
-              onClick={toggleMenu}  // Now properly connected
+              onClick={toggleMenu}  
               style={{ cursor: 'pointer' }}
             />
           </div>
