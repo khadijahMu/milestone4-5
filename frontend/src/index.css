@@ -141,7 +141,7 @@ img, svg, video, iframe {
 .desktop-nav {
   display: none;
 }
-/* Responsive Switch */
+/* Responsive view */
 @media (min-width: 1024px) {
   .mobile-nav {
     display: none;
