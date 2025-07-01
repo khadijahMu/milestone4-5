@@ -112,7 +112,7 @@ img, svg, video, iframe {
   padding-left: 10px; 
   position: relative;
 }
-/* Border BEFORE shopping icon */
+/* Border BEFORE shopping icn */
 .icon-wrapper.right::before {
   content: "";
   position: absolute;
