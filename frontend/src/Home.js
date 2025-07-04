@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import menuIcon from './assets/Vector.svg';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import imgHero from  './assets/img hero.png';
@@ -68,8 +69,8 @@ function Home() {
       <span className="nav-item">Contact</span>
     </div>
     <div className="nav-right">
-      <span className="nav-item">Sign In</span>
-      <div className="nav-divider"></div>
+       <Link to="/signin" className="nav-item">Sign In</Link> <div className="nav-divider"></div>
+                <div className="nav-divider"></div>
       <span className="nav-item">Cart</span>
     </div>
   </div>
@@ -97,10 +98,10 @@ function Home() {
 <div className="card-container">
   <div className="card-text">
     <h2>Fresh flowers</h2>
-    <div className="shop-now">
-      <h4>shop now</h4>
+    <Link to="/category" className="shop-now">
+      <h4>Shop Now</h4>
       <img src={arrowRight} alt="arrowRight" className="arrow" />
-    </div>
+    </Link>
   </div>
   <img src={card1} alt="card1" className="card-img" />
 </div>
@@ -110,45 +111,43 @@ function Home() {
   {/* Text content on right */}
   <div className="card-text">
     <h2>Dried flowers</h2>
-    <div className="shop-now">
-      <h4>shop now</h4>
-      <img src={arrowLeft} alt="arrow" className="arrow" />
-    </div>
+    <Link to="/category" className="shop-now">
+      <h4>Shop Now</h4>
+      <img src={arrowRight} alt="arrowRight" className="arrow" />
+    </Link>
   </div>
 </div>
 <div className="card-container">
   <div className="card-text">
-    <h2>live plants</h2>
-    <div className="shop-now">
-      <h4>shop now</h4>
+    <h2>Live Plants</h2>
+    <Link to="/category" className="shop-now">
+      <h4>Shop Now</h4>
       <img src={arrowRight} alt="arrowRight" className="arrow" />
-    </div>
+    </Link>
   </div>
-  <img src={card3} alt="card1" className="card-img" />
+  <img src={card3} alt="Live plants" className="card-img" />
 </div>
 <div className="card-container2">
-  {/* Image on left*/}
-  <img src={card4} alt="dried flowers" className="card-img" />
-  {/* Text content on right */}
+  <img src={card4} alt="Aromatic Candles" className="card-img" />
   <div className="card-text">
     <h2>Aromatic Candles</h2>
-    <div className="shop-now">
-      <h4>shop now</h4>
-      <img src={arrowLeft} alt="arrow" className="arrow" />
-    </div>
+    <Link to="/category" className="shop-now">
+      <h4>Shop Now</h4>
+      <img src={arrowLeft} alt="arrowLeft" className="arrow" />
+    </Link>
   </div>
 </div>
 <div className="card-container">
   <div className="card-text">
     <h2>Freshners</h2>
-    <div className="shop-now">
-      <h4>shop now</h4>
+    <Link to="/category" className="shop-now">
+      <h4>Shop Now</h4>
       <img src={arrowRight} alt="arrowRight" className="arrow" />
-    </div>
+    </Link>
   </div>
-  <img src={card5} alt="card1" className="card-img" />
-</div>
-      <div className="about-wrapper">
+  <img src={card5} alt="Freshners" className="card-img" />
+</div>  
+  <div className="about-wrapper">
   <div className="About">
     <h1>About Us</h1>
   </div>

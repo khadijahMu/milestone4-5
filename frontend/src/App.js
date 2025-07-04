@@ -4,6 +4,7 @@ import Category from './Category';
 import ProductPage from './Product';
 import About from './about'; 
 import Checkout from './checkout';
+import SignIn from './SignIn';
 function App() {
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/product" element={<ProductPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/signin" element={<SignIn />} />
       </Routes>
     </Router>
   );

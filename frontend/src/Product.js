@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import menuIcon from './assets/Vector.svg';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import leftee from './assets/left colum (1).png';
@@ -14,6 +16,7 @@ import pinterest from './assets/pinterest.svg';
 function Product() {
   const [count, setCount] = useState(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -44,7 +47,7 @@ function Product() {
               <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
               <li><a href="/category" onClick={() => setIsMenuOpen(false)}>Category</a></li>
               <li><a href="/product" onClick={() => setIsMenuOpen(false)}>Product</a></li>
-              <li><a href="/about" onClick={() => setIsMenuOpen(false)}>About </a></li>
+              <li><a href="/about" onClick={() => setIsMenuOpen(false)}>About</a></li>
               <li><a href="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</a></li>
             </ul>
           </div>
@@ -57,8 +60,8 @@ function Product() {
             <span className="nav-item">Contact</span>
           </div>
           <div className="nav-right">
-            <span className="nav-item">Sign In</span>
-            <div className="nav-divider"></div>
+          <Link to="/signin" className="nav-item">Sign In</Link> <div className="nav-divider"></div>
+          <div className="nav-divider"></div>
             <span className="nav-item">Cart</span>
           </div>
         </div>
@@ -85,7 +88,9 @@ function Product() {
                 <span className="qty-value">{count}</span>
                 <button className="qty-btn" onClick={() => setCount(prev => prev + 1)}>+</button>
               </div>
-              <button className="basket">Add to Basket</button>
+              <button className="basket" onClick={() => navigate('/checkout')}>
+                Add to Basket
+              </button>
             </div>
           </div>
         </div>
@@ -100,6 +105,7 @@ function Product() {
           </div>
         </div>
       </div>
+      {/* Footer */}
       <div className="footer">
         {/* Reminder section */}
         <div className="reminder">
@@ -153,7 +159,7 @@ function Product() {
           <h5>Terms & Conditions</h5>
           <h5>Privacy Policy</h5>
         </div>
-      </div>  
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import menuIcon from './assets/Vector.svg';
+import { Link } from 'react-router-dom';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import instagram from './assets/Instagram.svg';
 import facebook from './assets/Facebook.svg';
@@ -54,8 +55,8 @@ function About() {
             <span className="nav-item">Contact</span>
           </div>
           <div className="nav-right">
-            <span className="nav-item">Sign In</span>
-            <div className="nav-divider"></div>
+          <Link to="/signin" className="nav-item">Sign In</Link> <div className="nav-divider"></div>
+          <div className="nav-divider"></div>
             <span className="nav-item">Cart</span>
           </div>
         </div>

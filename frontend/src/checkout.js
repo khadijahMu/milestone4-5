@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import menuIcon from './assets/Vector.svg';
+import { Link, useNavigate } from 'react-router-dom';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import card1 from './assets/card item (5).png';
 import lock from './assets/Vector (2).svg';
@@ -9,49 +10,49 @@ import twitter from './assets/twitter.svg';
 import telegram from './assets/telegram.svg';
 import pinterest from './assets/pinterest.svg';
 import { loadStripe } from '@stripe/stripe-js';
-const stripePromise = loadStripe('pk_test_2x8J3utxkAoS3vK0mnmAxyHfvCeiZ9Wh'); 
-const handleCheckout = async () => {
-  try {
-    const res = await fetch('http://localhost:5000/checkout/create-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        items: [{ id: "snowfall", quantity: 1 }]
-      })
-    });
-    const data = await res.json();
-    const stripe = await stripePromise;
-    await stripe.redirectToCheckout({ sessionId: data.id });
-  } catch (error) {
-    console.error('Checkout Error:', error);
-  }
-};
+const stripePromise = loadStripe('pk_test_...');
 function Checkout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const navigate = useNavigate();
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const handleCheckout = async () => {
+    console.log('handleCheckout triggered');
+    const isSignedIn = !!localStorage.getItem('authToken');
+    if (!isSignedIn) {
+      alert('Please sign in to proceed.');
+      setTimeout(() => {
+        console.log('Redirecting to /signin...');
+        navigate('/signin', { state: { from: '/checkout' } });
+      }, 0);
+      return;
+    }
+    try {
+      const res = await fetch('http://localhost:5000/checkout/create-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [{ id: 'snowfall', quantity: 1 }] })
+      });
+      const data = await res.json();
+      const stripe = await stripePromise;
+      await stripe.redirectToCheckout({ sessionId: data.id });
+    } catch (err) {
+      console.error('Checkout Error:', err);
+    }
   };
   return (
     <div className="checkout-isolated">
-      {/* NAVIGATION */}
+      {/*NAV*/}
       <div className="navbar">
         <div className="mobile-nav">
           <div className="icon-wrapper left">
             <div className="vertical-line"></div>
-            <img
-              src={menuIcon}
-              alt="Menu"
-              className="icon"
-              onClick={toggleMenu}
-              style={{ cursor: 'pointer' }}
-            />
+            <img src={menuIcon} alt="Menu" className="icon" onClick={toggleMenu} style={{ cursor: 'pointer' }} />
           </div>
           <div className="icon-wrapper right">
             <img src={shoppingBag} alt="Bag" className="icon" />
             <div className="vertical-line"></div>
           </div>
         </div>
-        {/* Dropdown Menu */}
         {isMenuOpen && (
           <div className="dropdown-menu">
             <ul>
@@ -70,13 +71,12 @@ function Checkout() {
             <span className="nav-item">Contact</span>
           </div>
           <div className="nav-right">
-            <span className="nav-item">Sign In</span>
+            <Link to="/signin" className="nav-item">Sign In</Link>
             <div className="nav-divider"></div>
             <span className="nav-item">Cart</span>
           </div>
         </div>
       </div>
-      {/* CHECKOUT WRAPPER */}
       <div className="page-wrapper">
         <div className="right-section">
           <div className="product-card">
@@ -101,8 +101,14 @@ function Checkout() {
               <h5>Total</h5>
               <h5>$100.00</h5>
             </div>
-            <button className="checkout-btn-desktop" onClick={handleCheckout}>
-                          Checkout
+            <button
+              className="checkout-btn-desktop"
+              onClick={() => {
+                console.log('Checkout button clicked');
+                handleCheckout();
+              }}
+            >
+              Continue To Payment
             </button>
             <div className="secure">
               <img src={lock} alt="lock" className="padlock" />
@@ -112,8 +118,8 @@ function Checkout() {
         </div>
         <div className="left-section"></div>
       </div>
+      {/* FOOTER */}
       <div className="footer">
-        {/* Reminder section */}
         <div className="reminder">
           <h5>
             Remember to offer beautiful flowers from Kyiv <br />
@@ -124,7 +130,6 @@ function Checkout() {
           <input type="text" placeholder="Your Email" className="input-txt" />
           <button className="button">Remind</button>
         </div>
-        {/* Contact section */}
         <div className="contact">
           <h4>Address</h4>
           <h5>15/4 Khreshchatyk Street, Kyiv</h5>
@@ -141,7 +146,6 @@ function Checkout() {
             <img src={telegram} alt="Telegram" className="social-icon" />
           </div>
         </div>
-        {/* Shop section */}
         <div className="shop">
           <h2>Shop</h2>
           <h5>All products</h5>
@@ -156,7 +160,6 @@ function Checkout() {
           <h5>Delivery</h5>
           <h5>wedding & event Decor</h5>
         </div>
-        {/* About Us section */}
         <div className="about-us">
           <h2>About Us</h2>
           <h5>Our Story</h5>
@@ -165,7 +168,7 @@ function Checkout() {
           <h5>Terms & Conditions</h5>
           <h5>Privacy Policy</h5>
         </div>
-      </div>  
+      </div>
     </div>
   );
 }

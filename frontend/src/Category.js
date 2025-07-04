@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import menuIcon from './assets/Vector.svg';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import  background  from './assets/left colum.png';
@@ -68,20 +69,20 @@ function CategoryPage() {
           </div>
         </div>
       </div>
-      {/* content */}
-      <div className="desktop-wrapper">
+     {/* content */}
+<div className="desktop-wrapper">
   <div className="category-content"></div>
   <div className="body-images">
-    <img src={six} alt="img" />
-    <img src={seven} alt="img" />
-    <img src={eight} alt="img" />
-    <img src={nine} alt="img" />
-    <img src={ten} alt="img" />
-    <img src={eleven} alt="img" />
-    <img src={twelve} alt="img" />
-    <img src={thirteen} alt="img" />
-    <img src={fourteen} alt="img" />
-    <img src={fifteen} alt="img" />
+    <Link to="/product"><img src={six} alt="img" /></Link>
+    <Link to="/product"><img src={seven} alt="img" /></Link>
+    <Link to="/product"><img src={eight} alt="img" /></Link>
+    <Link to="/product"><img src={nine} alt="img" /></Link>
+    <Link to="/product"><img src={ten} alt="img" /></Link>
+    <Link to="/product"><img src={eleven} alt="img" /></Link>
+    <Link to="/product"><img src={twelve} alt="img" /></Link>
+    <Link to="/product"><img src={thirteen} alt="img" /></Link>
+    <Link to="/product"><img src={fourteen} alt="img" /></Link>
+    <Link to="/product"><img src={fifteen} alt="img" /></Link>
   </div>
 </div>
 <div className="footer">
