@@ -99,7 +99,7 @@ function Home() {
   <div className="card-text">
     <h2>Fresh flowers</h2>
     <Link to="/category" className="shop-now">
-      <h4>Shop Now</h4>
+    <h4>Shop Now →</h4>
       <img src={arrowRight} alt="arrowRight" className="arrow" />
     </Link>
   </div>
@@ -110,9 +110,9 @@ function Home() {
   <img src={card2} alt="dried flowers" className="card-img" />
   {/* Text content on right */}
   <div className="card-text">
-    <h2>Dried flowers</h2>
+    <h2>Dried flowers </h2>
     <Link to="/category" className="shop-now">
-      <h4>Shop Now</h4>
+      <h4>Shop Now ←</h4>
       <img src={arrowRight} alt="arrowRight" className="arrow" />
     </Link>
   </div>
@@ -121,7 +121,7 @@ function Home() {
   <div className="card-text">
     <h2>Live Plants</h2>
     <Link to="/category" className="shop-now">
-      <h4>Shop Now</h4>
+    <h4>Shop Now →</h4>
       <img src={arrowRight} alt="arrowRight" className="arrow" />
     </Link>
   </div>
@@ -132,7 +132,7 @@ function Home() {
   <div className="card-text">
     <h2>Aromatic Candles</h2>
     <Link to="/category" className="shop-now">
-      <h4>Shop Now</h4>
+    <h4>Shop Now ←</h4>
       <img src={arrowLeft} alt="arrowLeft" className="arrow" />
     </Link>
   </div>
@@ -141,7 +141,7 @@ function Home() {
   <div className="card-text">
     <h2>Freshners</h2>
     <Link to="/category" className="shop-now">
-      <h4>Shop Now</h4>
+    <h4>Shop Now →</h4>
       <img src={arrowRight} alt="arrowRight" className="arrow" />
     </Link>
   </div>
