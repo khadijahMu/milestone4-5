@@ -1,4 +1,13 @@
-# Flower Admin Dashboard
+# This is the frontend React application for managing and browsing flower inventory. It interfaces with a Node.js/Express/MongoDB backend and provides a modern user experience built with React, JSX, CSS, and responsive design.
+Features
+Dynamic flower listings with filters and categories
+-Single product pages with cart integration
+-Secure Stripe Checkout
+-User authentication (Sign in to checkout)
+-Fully responsive layout (mobile, tablet, desktop)
+-Styled with custom CSS, media queries, and flexbox/grid
+
+
 A full-stack application for managing flower inventory, built with:
 - **Backend**: Node.js, Express, MongoDB.
 - **Frontend**: HTML, CSS, JavaScript, React (JSX)
