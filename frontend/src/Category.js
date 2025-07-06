@@ -63,8 +63,8 @@ function CategoryPage() {
             <span className="nav-item">Contact</span>
           </div>
           <div className="nav-right">
-            <span className="nav-item">Sign In</span>
-            <div className="nav-divider"></div>
+            <Link to="/signin" className="nav-item">Sign In</Link> <div className="nav-divider"></div>
+                   <div className="nav-divider"></div>
             <span className="nav-item">Cart</span>
           </div>
         </div>
