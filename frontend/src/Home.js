@@ -51,15 +51,15 @@ function Home() {
       </div>
       {/* Dropdown Menu */}
       {isMenuOpen && (
-        <div className="dropdown-menu">
-          <ul>
-            <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-            <li><a href="/category" onClick={() => setIsMenuOpen(false)}>Category</a></li>
-            <li><a href="/product" onClick={() => setIsMenuOpen(false)}>Product</a></li>
-            <li><a href="/about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-            <li><a href="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</a></li>
-          </ul>
-        </div>
+       <div className="dropdown-menu">
+       <ul>
+         <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+         <li><Link to="/category" onClick={() => setIsMenuOpen(false)}>Category</Link></li>
+         <li><Link to="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
+         <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+         <li><Link to="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</Link></li>
+       </ul>
+     </div>
       )}
   {/* Desktop view */}
   <div className="desktop-nav">
@@ -75,24 +75,28 @@ function Home() {
     </div>
   </div>
 </div>
-      <div className="body">
-        <h1>
-          Kyiv<br />
-          LuxeBouquets®
-        </h1>
-        <h4>
-          Discover Uniquely Crafted Bouquets and Gifts for Any <br />Occasion: Spread Joy with Our Online Flower Delivery<br />Service
-        </h4>
-      </div>
-      <div className="bodyimage">
-  <img src={imgHero} alt="hero" className="heroImg" />
-  <div className="vertical-divider"></div>
-  <div className="text-block">
+<div className="hero-wrapper">
+  <div className="body">
+    <h1>
+      Kyiv<br />
+      LuxeBouquets®
+    </h1>
     <h4>
-      Experience the joy of giving with our <br />
-      modern floral studio.Order online and send <br /> 
-      fresh flowers, plants and gifts today.
+      Discover Uniquely Crafted Bouquets and Gifts for Any <br />
+      Occasion: Spread Joy with Our Online Flower Delivery<br />
+      Service
     </h4>
+  </div>
+  <div className="bodyimage">
+    <img src={imgHero} alt="hero" className="heroImg" />
+    <div className="vertical-divider"></div>
+    <div className="text-block">
+      <h4>
+        Experience the joy of giving with our <br />
+        modern floral studio.Order online and send <br /> 
+        fresh flowers, plants and gifts today.
+      </h4>
+    </div>
   </div>
 </div>
 <div className="card-container">

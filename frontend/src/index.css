@@ -313,6 +313,7 @@ img, svg, video, iframe {
   style: italic;
   color: #121212E5;  
 }
+
 /* media queries */
 @media (min-width: 768px) {
   .body h1 {
@@ -325,7 +326,8 @@ img, svg, video, iframe {
 @media (min-width: 1024px) {
   .body {
     max-width: 700px;
-    padding: 3rem;
+    margin-left: 3rem; 
+    padding: 2rem 0; 
   }
   .body h1 {
     font-size: 3rem;

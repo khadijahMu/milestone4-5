@@ -55,15 +55,15 @@ function Checkout() {
         </div>
         {isMenuOpen && (
           <div className="dropdown-menu">
-            <ul>
-              <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-              <li><a href="/category" onClick={() => setIsMenuOpen(false)}>Category</a></li>
-              <li><a href="/product" onClick={() => setIsMenuOpen(false)}>Product</a></li>
-              <li><a href="/about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-              <li><a href="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</a></li>
-            </ul>
-          </div>
-        )}
+          <ul>
+            <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/category" onClick={() => setIsMenuOpen(false)}>Category</Link></li>
+            <li><Link to="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
+            <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</Link></li>
+          </ul>
+        </div>
+          )}
         <div className="desktop-nav">
           <div className="nav-left">
             <span className="nav-item">Shop</span>
