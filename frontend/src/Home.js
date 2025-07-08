@@ -75,7 +75,7 @@ function Home() {
     </div>
   </div>
 </div>
-<div className="hero-wrapper">
+<div className="hero-section">
   <div className="body">
     <h1>
       Kyiv<br />
@@ -200,31 +200,36 @@ function Home() {
     <img src={rightColum} alt="colum" className="colum" />
   </div>
   <div className="left-section">
-    <div className="cnt">
-      <h1>To Contact Us</h1>
-      <h4>We will call you back</h4>
-      <input type="text" placeholder="+380 XXX XXX XXX" className="input-txt" />
-      <button className="button">Book a Call</button>
-    </div>
-    <div class="bottom-info">
-  <div class="phone">
-    <h1>Phone</h1>
-    <div class="phone-content">
-      <h4><img src={call} alt="call" class="call" /> +380980099777</h4>
-      <h4><img src={call} alt="call" class="call" /> +380980099111</h4>
-    </div>
+  <div className="cnt">
+    <h1>To Contact Us</h1>
+    <h4>We will call you back</h4>
+    <input type="text" placeholder="+380 XXX XXX XXX" className="input-txt" />
+    <button className="button">Book a Call</button>
   </div>
-  <div class="address">
-    <h1>Address</h1>
-    <div class="address-content">
-      <h4>Opening hours: 8 to 11 p.m.</h4>
-      <div class="address-line">
-        <img src={pin} alt="location" class="location" />
+
+  <div className="bottom-info-table">
+    <div className="row header-row">
+      <div className="cell header">Phone</div>
+      <div className="cell header">Address</div>
+    </div>
+    <div className="row">
+      <div className="cell">
+        <h4><img src={call} alt="call" className="call" /> +380980099777</h4>
+      </div>
+      <div className="cell">
+        <h4>Opening hours: 8 to 11 p.m.</h4>
+      </div>
+    </div>
+    <div className="row">
+      <div className="cell">
+        <h4><img src={call} alt="call" className="call" /> +380980099111</h4>
+      </div>
+      <div className="cell address-line">
+        <img src={pin} alt="location" className="location" />
         <h4>15/4 Khreshchatyk Street, Kyiv</h4>
       </div>
     </div>
   </div>
-</div> 
 </div>
 </div>
 <div className="our-service">
