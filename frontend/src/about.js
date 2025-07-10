@@ -44,6 +44,8 @@ function About() {
             <li><Link to="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
             <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
             <li><Link to="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</Link></li>
+            <li><Link to="/signin" onClick={() => setIsMenuOpen(false)}>SignIn</Link></li>
+                  
           </ul>
         </div>
          )}

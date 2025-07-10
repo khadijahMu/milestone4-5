@@ -16,16 +16,19 @@ function Checkout() {
   const navigate = useNavigate();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const handleCheckout = async () => {
-    console.log('handleCheckout triggered');
+    console.log('Checkout triggered');
     const isSignedIn = !!localStorage.getItem('authToken');
+    console.log('isSignedIn?', isSignedIn);
+  
     if (!isSignedIn) {
-      alert('Please sign in to proceed.');
-      setTimeout(() => {
-        console.log('Redirecting to /signin...');
-        navigate('/signin', { state: { from: '/checkout' } });
-      }, 0);
+      console.log('Redirecting to /signin');
+      navigate('/signin', { state: { from: '/checkout' } });
       return;
     }
+  
+    // You can log to verify flow continues
+    console.log('Proceeding with Stripe checkout...');
+    
     try {
       const res = await fetch('http://localhost:5000/checkout/create-session', {
         method: 'POST',
@@ -36,10 +39,10 @@ function Checkout() {
       const stripe = await stripePromise;
       await stripe.redirectToCheckout({ sessionId: data.id });
     } catch (err) {
-      console.error('Checkout Error:', err);
+      console.error('Stripe error:', err);
     }
   };
-  return (
+      return (
     <div className="checkout-isolated">
       {/*NAV*/}
       <div className="navbar">
@@ -61,6 +64,7 @@ function Checkout() {
             <li><Link to="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
             <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
             <li><Link to="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</Link></li>
+            <li><Link to="/signin" onClick={() => setIsMenuOpen(false)}>SignIn</Link></li>      
           </ul>
         </div>
           )}
@@ -102,15 +106,16 @@ function Checkout() {
               <h5>$100.00</h5>
             </div>
             <button
-              className="checkout-btn-desktop"
-              onClick={() => {
-                console.log('Checkout button clicked');
-                handleCheckout();
-              }}
-            >
-              Continue To Payment
+               className="checkout-btn-desktop"
+               onClick={() => {
+               console.log(' Button clicked');
+               handleCheckout();
+                }}
+                >
+            Continue To Payment
             </button>
-            <div className="secure">
+
+<div className="secure">
               <img src={lock} alt="lock" className="padlock" />
               <h5>Secure Checkout</h5>
             </div>
