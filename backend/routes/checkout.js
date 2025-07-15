@@ -1,30 +1,32 @@
-
-const express = require("express");
-const router = express.Router();
-const Stripe = require("stripe");
+// routes/checkout.js
+const express = require('express');
+const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-router.post("/create-checkout-session", async (req, res) => {
-  const { cartItems } = req.body;
+const router = express.Router();
+
+router.post('/create-session', async (req, res) => {
+  const { items } = req.body;
+
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: cartItems.map(item => ({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: items.map(item => ({
         price_data: {
-          currency: "usd",
-          product_data: {
-            name: item.name,
-          },
-          unit_amount: item.price * 100,
+          currency: 'usd',
+          product_data: { name: item.id },
+          unit_amount: item.price_cents,
         },
         quantity: item.quantity,
       })),
-      mode: "payment",
-      success_url: "http://localhost:3000/payment-success",
-      cancel_url: "http://localhost:3000/cart",
+      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
-    res.json({ url: session.url });
+    res.json({ id: session.id });
   } catch (err) {
-    res.status(500).json({ error: "Failed to create Stripe session" });
+    console.error('Error creating Stripe session:', err);
+    res.status(500).send('Internal Server Error');
   }
 });
+
 module.exports = router;
