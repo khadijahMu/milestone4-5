@@ -7,7 +7,7 @@ import imgHero from './assets/img hero.png';
 import arrowRight from './assets/arrow-right.svg';
 import card1 from './assets/card item (5).png';
 import card2 from './assets/card item (1).png';
-import arrowLeft from './assets/arrow-left.svg';
+// import arrowLeft from './assets/arrow-left.svg';
 import card3 from './assets/card item (2).png';
 import card4 from './assets/card item (3).png';
 import card5 from './assets/card item (4).png';
@@ -218,7 +218,6 @@ function Home() {
           </div>
         </div>
       </div>
-      
       {/* Contact Section */}
       <div className="main-container" style={{position: 'relative'}}>
       <div className="desktop-divider"></div>
