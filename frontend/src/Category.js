@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import menuIcon from './assets/Vector.svg';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import  background  from './assets/left colum.png';
@@ -33,7 +34,7 @@ function CategoryPage() {
               src={menuIcon} 
               alt="Menu" 
               className="icon" 
-              onClick={toggleMenu}  // Now properly connected
+              onClick={toggleMenu}  
               style={{ cursor: 'pointer' }}
             />
           </div>
@@ -45,15 +46,17 @@ function CategoryPage() {
         {/* Dropdown Menu */}
         {isMenuOpen && (
           <div className="dropdown-menu">
-            <ul>
-              <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-              <li><a href="/category" onClick={() => setIsMenuOpen(false)}>Category</a></li>
-              <li><a href="/product" onClick={() => setIsMenuOpen(false)}>Product</a></li>
-              <li><a href="/about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-              <li><a href="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</a></li>
-            </ul>
-          </div>
-        )}
+          <ul>
+            <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/category" onClick={() => setIsMenuOpen(false)}>Category</Link></li>
+            <li><Link to="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
+            <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</Link></li>
+            <li><Link to="/signin" onClick={() => setIsMenuOpen(false)}>SignIn</Link></li>
+                  
+          </ul>
+        </div>
+          )}
         {/* Desktop view */}
         <div className="desktop-nav">
           <div className="nav-left">
@@ -62,26 +65,26 @@ function CategoryPage() {
             <span className="nav-item">Contact</span>
           </div>
           <div className="nav-right">
-            <span className="nav-item">Sign In</span>
-            <div className="nav-divider"></div>
+            <Link to="/signin" className="nav-item">Sign In</Link> <div className="nav-divider"></div>
+                   <div className="nav-divider"></div>
             <span className="nav-item">Cart</span>
           </div>
         </div>
       </div>
-      {/* content */}
-      <div className="desktop-wrapper">
+     {/* content */}
+<div className="desktop-wrapper">
   <div className="category-content"></div>
   <div className="body-images">
-    <img src={six} alt="img" />
-    <img src={seven} alt="img" />
-    <img src={eight} alt="img" />
-    <img src={nine} alt="img" />
-    <img src={ten} alt="img" />
-    <img src={eleven} alt="img" />
-    <img src={twelve} alt="img" />
-    <img src={thirteen} alt="img" />
-    <img src={fourteen} alt="img" />
-    <img src={fifteen} alt="img" />
+    <Link to="/product"><img src={six} alt="img" /></Link>
+    <Link to="/product"><img src={seven} alt="img" /></Link>
+    <Link to="/product"><img src={eight} alt="img" /></Link>
+    <Link to="/product"><img src={nine} alt="img" /></Link>
+    <Link to="/product"><img src={ten} alt="img" /></Link>
+    <Link to="/product"><img src={eleven} alt="img" /></Link>
+    <Link to="/product"><img src={twelve} alt="img" /></Link>
+    <Link to="/product"><img src={thirteen} alt="img" /></Link>
+    <Link to="/product"><img src={fourteen} alt="img" /></Link>
+    <Link to="/product"><img src={fifteen} alt="img" /></Link>
   </div>
 </div>
 <div className="footer">

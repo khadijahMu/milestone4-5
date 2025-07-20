@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import menuIcon from './assets/Vector.svg';
+import { Link } from 'react-router-dom';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import instagram from './assets/Instagram.svg';
 import facebook from './assets/Facebook.svg';
@@ -37,15 +38,17 @@ function About() {
         {/* Dropdown Menu */}
         {isMenuOpen && (
           <div className="dropdown-menu">
-            <ul>
-              <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-              <li><a href="/category" onClick={() => setIsMenuOpen(false)}>Category</a></li>
-              <li><a href="/product" onClick={() => setIsMenuOpen(false)}>Product</a></li>
-              <li><a href="/about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-              <li><a href="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</a></li>
-            </ul>
-          </div>
-        )}
+          <ul>
+            <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/category" onClick={() => setIsMenuOpen(false)}>Category</Link></li>
+            <li><Link to="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
+            <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+            <li><Link to="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</Link></li>
+            <li><Link to="/signin" onClick={() => setIsMenuOpen(false)}>SignIn</Link></li>
+                  
+          </ul>
+        </div>
+         )}
         {/* Desktop view */}
         <div className="desktop-nav">
           <div className="nav-left">
@@ -54,8 +57,8 @@ function About() {
             <span className="nav-item">Contact</span>
           </div>
           <div className="nav-right">
-            <span className="nav-item">Sign In</span>
-            <div className="nav-divider"></div>
+          <Link to="/signin" className="nav-item">Sign In</Link> <div className="nav-divider"></div>
+          <div className="nav-divider"></div>
             <span className="nav-item">Cart</span>
           </div>
         </div>

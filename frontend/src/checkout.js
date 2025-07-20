@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
 import menuIcon from './assets/Vector.svg';
 import shoppingBag from './assets/shopping_bag_FILL0_wght300_GRAD0_opsz24.svg';
 import card1 from './assets/card item (5).png';
@@ -8,28 +10,42 @@ import facebook from './assets/Facebook.svg';
 import twitter from './assets/twitter.svg';
 import telegram from './assets/telegram.svg';
 import pinterest from './assets/pinterest.svg';
-import { loadStripe } from '@stripe/stripe-js';
-const stripePromise = loadStripe('pk_test_2x8J3utxkAoS3vK0mnmAxyHfvCeiZ9Wh'); 
-const handleCheckout = async () => {
-  try {
-    const res = await fetch('http://localhost:5000/checkout/create-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        items: [{ id: "snowfall", quantity: 1 }]
-      })
-    });
-    const data = await res.json();
-    const stripe = await stripePromise;
-    await stripe.redirectToCheckout({ sessionId: data.id });
-  } catch (error) {
-    console.error('Checkout Error:', error);
-  }
-};
+
+const stripePromise = loadStripe('pk_test_51Rb3SiP5XnTJ2KYW0BGMcKg04jycmK5EoPIljSsQuHhX39mcQKal6Eid6LKfs3TrKbAd1TN0XJlV7ALCzN9COq7d00aPHYRPIC'); 
+
 function Checkout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const navigate = useNavigate();
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const handleCheckout = async () => {
+    const isSignedIn = !!localStorage.getItem('authToken');
+    if (!isSignedIn) {
+      navigate('/signin', { state: { from: '/checkout' } });
+      return;
+    }
+    try {
+      const res = await fetch('http://localhost:5000/checkout/create-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [{ id: 'Snowfall', quantity: 1, price_cents: 10000 }]
+        }),
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error('Failed to fetch session:', res.status, errorText);
+        return;
+      }
+      const data = await res.json();
+      const stripe = await stripePromise;
+      const result = await stripe.redirectToCheckout({ sessionId: data.id });
+      if (result.error) {
+        console.error('Stripe redirect error:', result.error.message);
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+    }
   };
   return (
     <div className="checkout-isolated">
@@ -38,28 +54,22 @@ function Checkout() {
         <div className="mobile-nav">
           <div className="icon-wrapper left">
             <div className="vertical-line"></div>
-            <img
-              src={menuIcon}
-              alt="Menu"
-              className="icon"
-              onClick={toggleMenu}
-              style={{ cursor: 'pointer' }}
-            />
+            <img src={menuIcon} alt="Menu" className="icon" onClick={toggleMenu} style={{ cursor: 'pointer' }} />
           </div>
           <div className="icon-wrapper right">
             <img src={shoppingBag} alt="Bag" className="icon" />
             <div className="vertical-line"></div>
           </div>
         </div>
-        {/* Dropdown Menu */}
         {isMenuOpen && (
           <div className="dropdown-menu">
             <ul>
-              <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-              <li><a href="/category" onClick={() => setIsMenuOpen(false)}>Category</a></li>
-              <li><a href="/product" onClick={() => setIsMenuOpen(false)}>Product</a></li>
-              <li><a href="/about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-              <li><a href="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</a></li>
+              <li><Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+              <li><Link to="/category" onClick={() => setIsMenuOpen(false)}>Category</Link></li>
+              <li><Link to="/product" onClick={() => setIsMenuOpen(false)}>Product</Link></li>
+              <li><Link to="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+              <li><Link to="/checkout" onClick={() => setIsMenuOpen(false)}>Checkout</Link></li>
+              <li><Link to="/signin" onClick={() => setIsMenuOpen(false)}>Sign In</Link></li>
             </ul>
           </div>
         )}
@@ -70,17 +80,17 @@ function Checkout() {
             <span className="nav-item">Contact</span>
           </div>
           <div className="nav-right">
-            <span className="nav-item">Sign In</span>
+            <Link to="/signin" className="nav-item">Sign In</Link>
             <div className="nav-divider"></div>
             <span className="nav-item">Cart</span>
           </div>
         </div>
       </div>
-      {/* CHECKOUT WRAPPER */}
+      {/* CHECKOUT CONTENT */}
       <div className="page-wrapper">
         <div className="right-section">
           <div className="product-card">
-            <img src={card1} alt="flower" className="product-image" />
+            <img src={card1} alt="Snowfall" className="product-image" />
             <div className="product-text">
               <h5 className="product-name">Snowfall</h5>
             </div>
@@ -93,7 +103,7 @@ function Checkout() {
             </div>
             <div className="line-item">
               <h5>Shipping</h5>
-              <h5>calculated at next step</h5>
+              <h5>Calculated at next step</h5>
             </div>
           </div>
           <div className="checkout-total">
@@ -101,19 +111,26 @@ function Checkout() {
               <h5>Total</h5>
               <h5>$100.00</h5>
             </div>
-            <button className="checkout-btn-desktop" onClick={handleCheckout}>
-                          Checkout
-            </button>
+            <button
+  type="button"
+  className="checkout-btn-desktop"
+  onClick={(e) => {
+    e.preventDefault();
+    handleCheckout();
+  }}
+>
+  Continue To Payment
+</button>
             <div className="secure">
-              <img src={lock} alt="lock" className="padlock" />
+              <img src={lock} alt="Secure" className="padlock" />
               <h5>Secure Checkout</h5>
             </div>
           </div>
         </div>
         <div className="left-section"></div>
       </div>
+      {/* FOOTER */}
       <div className="footer">
-        {/* Reminder section */}
         <div className="reminder">
           <h5>
             Remember to offer beautiful flowers from Kyiv <br />
@@ -124,14 +141,13 @@ function Checkout() {
           <input type="text" placeholder="Your Email" className="input-txt" />
           <button className="button">Remind</button>
         </div>
-        {/* Contact section */}
         <div className="contact">
           <h4>Address</h4>
           <h5>15/4 Khreshchatyk Street, Kyiv</h5>
           <h4>Phone</h4>
           <h5>+380980099777</h5>
           <h4>General Enquiry</h4>
-          <h4>Kiev.Florist.Studio@gmail.com</h4>
+          <h5>Kiev.Florist.Studio@gmail.com</h5>
           <h2>Follow us</h2>
           <div className="social-icons">
             <img src={instagram} alt="Instagram" className="social-icon" />
@@ -141,7 +157,6 @@ function Checkout() {
             <img src={telegram} alt="Telegram" className="social-icon" />
           </div>
         </div>
-        {/* Shop section */}
         <div className="shop">
           <h2>Shop</h2>
           <h5>All products</h5>
@@ -150,22 +165,21 @@ function Checkout() {
           <h5>Live plants</h5>
           <h5>Designer Vases</h5>
           <h5>Aroma Candles</h5>
-          <h5>Freshner Diffuser</h5>
+          <h5>Freshener Diffuser</h5>
           <h2>Service</h2>
           <h5>Flower Subscription</h5>
           <h5>Delivery</h5>
-          <h5>wedding & event Decor</h5>
+          <h5>Wedding & Event Decor</h5>
         </div>
-        {/* About Us section */}
         <div className="about-us">
           <h2>About Us</h2>
           <h5>Our Story</h5>
           <h5>Blog</h5>
-          <h5>Shipping & return</h5>
+          <h5>Shipping & Return</h5>
           <h5>Terms & Conditions</h5>
           <h5>Privacy Policy</h5>
         </div>
-      </div>  
+      </div>
     </div>
   );
 }

@@ -12,9 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch(err => console.error("❌ MongoDB Error:", err));
-
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.error(" MongoDB Error:", err));
 /*WEBHOOK */
 app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
   const sig = req.headers['stripe-signature'];
@@ -26,7 +25,7 @@ app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
-    console.error('⚠️ Stripe Webhook Error:', err.message);
+    console.error('Stripe Webhook Error:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
   if (event.type === 'checkout.session.completed') {
